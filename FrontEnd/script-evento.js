@@ -64,6 +64,31 @@ async function getEventos() {
 }
 
 
+// Função para deletar evento
+async function deletarEvento(eventoId) {
+    // Confirmação antes de deletar
+    if (window.confirm("Tem certeza que deseja deletar este evento?")) {
+        try {
+            console.log(`Tentando deletar o evento com ID: ${eventoId}`);
+            const response = await fetch(`http://localhost:8080/eventos/deletar/${eventoId}`, {
+                method: 'DELETE',
+            });
+            console.log('Resposta da requisição:', response); // Log da resposta
+            if (!response.ok) {
+                throw new Error(`Erro ao deletar evento: ${response.status}`);
+            }
+            console.log(`Evento ${eventoId} deletado com sucesso.`);
+            // Recarrega a página após a exclusão bem-sucedida
+            alert("Evento deletado com sucesso!"); // Alerta de sucesso antes de recarregar
+            window.location.reload(); // Recarrega a página para atualizar a lista de eventos
+        } catch (error) {
+            console.error(`Erro: ${error.message}`);
+            alert("Erro ao deletar o evento. Tente novamente mais tarde."); // Mensagem ao usuário
+        }
+    }
+}
+
+
 // Função para exibir eventos na página
 function exibirEventos(eventos) {
     const eventsContainer = document.querySelector('.events-container');
@@ -104,28 +129,3 @@ function exibirEventos(eventos) {
 getEventos().then(eventos => {
     exibirEventos(eventos); // Exibe os eventos na página
 });
-
-
-// Função para deletar evento
-async function deletarEvento(eventoId) {
-    // Confirmação antes de deletar
-    if (window.confirm("Tem certeza que deseja deletar este evento?")) {
-        try {
-            console.log(`Tentando deletar o evento com ID: ${eventoId}`);
-            const response = await fetch(`http://localhost:8080/eventos/deletar/${eventoId}`, {
-                method: 'DELETE',
-            });
-            console.log('Resposta da requisição:', response); // Log da resposta
-            if (!response.ok) {
-                throw new Error(`Erro ao deletar evento: ${response.status}`);
-            }
-            console.log(`Evento ${eventoId} deletado com sucesso.`);
-            // Recarrega a página após a exclusão bem-sucedida
-            alert("Evento deletado com sucesso!"); // Alerta de sucesso antes de recarregar
-            window.location.reload(); // Recarrega a página para atualizar a lista de eventos
-        } catch (error) {
-            console.error(`Erro: ${error.message}`);
-            alert("Erro ao deletar o evento. Tente novamente mais tarde."); // Mensagem ao usuário
-        }
-    }
-}

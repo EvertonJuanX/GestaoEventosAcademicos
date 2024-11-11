@@ -113,7 +113,7 @@ async function deletarBanco(id) {
     const confirmacao = confirm('Tem certeza que deseja deletar este banco?');
     if (confirmacao) {
         try {
-            const response = await fetch(`http://localhost:8080/bancos/apagar/${id}`, {
+            const response = await fetch(`http://localhost:8080/bancos/deletar/${id}`, {
                 method: 'DELETE'
             });
 

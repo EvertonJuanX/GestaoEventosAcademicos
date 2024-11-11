@@ -11,23 +11,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "Evento")
+@Table(name = "Certificado")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Evento {
+public class Certificado {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String cargaHoraria;
 	private String descricao;
-	private String data;
-	private String local;
-	private String tipo;
-	private Long idServidor;
 	private boolean ativo;
 	
 	public void inativar() {

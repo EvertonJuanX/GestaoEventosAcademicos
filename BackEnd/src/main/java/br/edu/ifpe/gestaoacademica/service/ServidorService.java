@@ -50,37 +50,14 @@ public class ServidorService {
 	    Servidor servidor = servidorRepository.findById(dadosServidorDTO.id())
 	            .orElseThrow(() -> new EntityNotFoundException("Servidor não encontrado"));
 
-		if (dadosServidorDTO.siape() != null) {
-			servidor.setSiape(dadosServidorDTO.siape());
-		}
-
-		if (dadosServidorDTO.cargo() != null) {
-			servidor.setCargo(dadosServidorDTO.cargo());
-		}
-		
-		if (dadosServidorDTO.nome() != null) {
-			servidor.setNome(dadosServidorDTO.nome());
-		}
-		
-		if (dadosServidorDTO.rg() != null) {
-			servidor.setRg(dadosServidorDTO.rg());
-		}
-		
-		if (dadosServidorDTO.dataNasc() != null) {
-			servidor.setDataNasc(dadosServidorDTO.dataNasc());
-		}
-		
-		if (dadosServidorDTO.telefone() != null) {
-			servidor.setTelefone(dadosServidorDTO.telefone());
-		}
-		
-		if (dadosServidorDTO.banco() != null) {
-			servidor.setBanco(dadosServidorDTO.banco());
-		}
-		
-		if (dadosServidorDTO.endereco() != null) {
-			servidor.setEndereco(dadosServidorDTO.endereco());
-		}
+		if (dadosServidorDTO.nome() != null) servidor.setNome(dadosServidorDTO.nome());
+		if (dadosServidorDTO.siape() != null) servidor.setSiape(dadosServidorDTO.siape());
+		if (dadosServidorDTO.cargo() != null) servidor.setCargo(dadosServidorDTO.cargo());
+		if (dadosServidorDTO.dataNasc() != null) servidor.setDataNasc(dadosServidorDTO.dataNasc());
+		if (dadosServidorDTO.email() != null) servidor.setEmail(dadosServidorDTO.email());
+		if (dadosServidorDTO.telefone() != null) servidor.setTelefone(dadosServidorDTO.telefone());
+		if (dadosServidorDTO.banco() != null) servidor.setBanco(dadosServidorDTO.banco());
+		if (dadosServidorDTO.endereco() != null) servidor.setEndereco(dadosServidorDTO.endereco());
 		
 		return servidorRepository.save(servidor);
 	}

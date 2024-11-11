@@ -33,7 +33,6 @@ public class Banco {
 	private String operacao;
 	private boolean ativo;
 	
-	
 	public void inativar() {
 		this.ativo = false;
 	}

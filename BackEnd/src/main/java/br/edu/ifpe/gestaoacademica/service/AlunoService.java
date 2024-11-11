@@ -41,40 +41,20 @@ public class AlunoService {
 	public List<Aluno> listarAlunos() {
 		return alunoRepository.findAllByAtivoTrue();
 	}
-	
-	public Aluno atualizarAluno(@Valid AlunoDTO dadosAlunoDTO) {
-		
-	    Aluno aluno = alunoRepository.findById(dadosAlunoDTO.id())
-	            .orElseThrow(() -> new EntityNotFoundException("Aluno não encontrado"));
 
-		if (dadosAlunoDTO.matricula() != null) {
-			aluno.setMatricula(dadosAlunoDTO.matricula());
-		}
-		
-		if (dadosAlunoDTO.nome() != null) {
-			aluno.setNome(dadosAlunoDTO.nome());
-		}
-		
-		if (dadosAlunoDTO.dataNasc() != null) {
-			aluno.setDataNasc(dadosAlunoDTO.dataNasc());
-		}
-		
-		if (dadosAlunoDTO.email() != null) {
-			aluno.setEmail(dadosAlunoDTO.email());
-		}
-		
-		if (dadosAlunoDTO.telefone() != null) {
-			aluno.setTelefone(dadosAlunoDTO.telefone());
-		}
-		
-		if (dadosAlunoDTO.banco() != null) {
-			aluno.setBanco(dadosAlunoDTO.banco());
-		}
-		
-		if (dadosAlunoDTO.endereco() != null) {
-			aluno.setEndereco(dadosAlunoDTO.endereco());
-		}
-		
+	public Aluno atualizarAluno(@Valid AlunoDTO dadosAlunoDTO) {
+
+		Aluno aluno = alunoRepository.findById(dadosAlunoDTO.id())
+				.orElseThrow(() -> new EntityNotFoundException("Aluno não encontrado"));
+
+		if (dadosAlunoDTO.nome() != null) aluno.setNome(dadosAlunoDTO.nome());
+		if (dadosAlunoDTO.matricula() != null) aluno.setMatricula(dadosAlunoDTO.matricula());
+		if (dadosAlunoDTO.dataNasc() != null) aluno.setDataNasc(dadosAlunoDTO.dataNasc());
+		if (dadosAlunoDTO.email() != null) aluno.setEmail(dadosAlunoDTO.email());
+		if (dadosAlunoDTO.telefone() != null) aluno.setTelefone(dadosAlunoDTO.telefone());
+		if (dadosAlunoDTO.banco() != null) aluno.setBanco(dadosAlunoDTO.banco());
+		if (dadosAlunoDTO.endereco() != null) aluno.setEndereco(dadosAlunoDTO.endereco());
+
 		return alunoRepository.save(aluno);
 	}
 

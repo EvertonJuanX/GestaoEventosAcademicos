@@ -34,7 +34,7 @@ public class BancoService {
 	public Banco atualizarBanco(BancoDTO dadosBancoDTO) {
 		Banco banco = bancoRepository.findById(dadosBancoDTO.id())
 				.orElseThrow(() -> new EntityNotFoundException("Banco não encontrado"));
-		
+
 		if (dadosBancoDTO.nomeBanco() != null) banco.setNomeBanco(dadosBancoDTO.nomeBanco());
 		if (dadosBancoDTO.numConta() != null) banco.setNumConta(dadosBancoDTO.numConta());
 		if (dadosBancoDTO.agencia() != null) banco.setAgencia(dadosBancoDTO.agencia());
@@ -43,7 +43,7 @@ public class BancoService {
 		return bancoRepository.save(banco);
 	}
 
-	public List<Banco> listarBanco(){
+	public List<Banco> listarBanco() {
 		return bancoRepository.findAllByAtivoTrue();
 	}
 

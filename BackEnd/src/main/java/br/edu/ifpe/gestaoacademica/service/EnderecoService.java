@@ -50,7 +50,7 @@ public class EnderecoService {
 		return enderecoRepository.save(endereco);
 	}
 
-	public List<Endereco> listarEnderecos(){
+	public List<Endereco> listarEnderecos() {
 		return enderecoRepository.findAllByAtivoTrue();
 	}
 

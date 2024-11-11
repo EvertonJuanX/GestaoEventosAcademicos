@@ -14,50 +14,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifpe.gestaoacademica.controllers.dto.EventoDTO;
-import br.edu.ifpe.gestaoacademica.entities.Evento;
-import br.edu.ifpe.gestaoacademica.service.EventoService;
+import br.edu.ifpe.gestaoacademica.controllers.dto.TransporteDTO;
+import br.edu.ifpe.gestaoacademica.entities.Transporte;
+import br.edu.ifpe.gestaoacademica.service.TransporteService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/eventos")
+@RequestMapping("/transportes")
 @CrossOrigin(origins = "*")
-public class EventoController {
-
+public class TransporteController {
+	
 	@Autowired
-	private EventoService eventoService;
+	private TransporteService transporteService;
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Evento> cadastrarEvento(@RequestBody @Valid EventoDTO dadosEventoDTO) {
-		Evento evento = eventoService.cadastrarEvento(dadosEventoDTO);
-		return ResponseEntity.ok(evento);
+	public ResponseEntity<Transporte> cadastrarTransporte(@RequestBody @Valid TransporteDTO dadosTransporteDTO) {
+		Transporte transporte = transporteService.cadastrarTransporte(dadosTransporteDTO);
+		return ResponseEntity.ok(transporte);
 	}
 
 	@GetMapping
-	public List<EventoDTO> listarEvento() {
-		return eventoService.listarEventos().stream().map(EventoDTO::new).toList();
+	public List<TransporteDTO> listarTransporte() {
+		return transporteService.listarTransporte().stream().map(TransporteDTO::new).toList();
 	}
 	
 	@PutMapping
 	@Transactional
-	public ResponseEntity<Evento> atualizarEvento(@RequestBody @Valid EventoDTO dadosEventoDTO) {
-		var evento = eventoService.atualizarEvento(dadosEventoDTO);
-		return ResponseEntity.ok(evento);
+	public ResponseEntity<Transporte> atualizarTransporte(@RequestBody @Valid TransporteDTO dadosTransporteDTO) {
+		var transporte = transporteService.atualizarTransporte(dadosTransporteDTO);
+		return ResponseEntity.ok(transporte);
 	}
 
 	@DeleteMapping("/deletar/{id}")
 	@Transactional
-	public ResponseEntity<Void> deletarEvento(@PathVariable Long id) {
-		eventoService.deletarEvento(id);
+	public ResponseEntity<Void> deletarTransporte(@PathVariable Long id) {
+		transporteService.deletarTransporte(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity<Void> inativarEvento(@PathVariable Long id) {
-		eventoService.inativarEvento(id);
+	public ResponseEntity<Void> inativarTransporte(@PathVariable Long id) {
+		transporteService.inativarTransporte(id);
 		return ResponseEntity.noContent().build();
 	}
 }

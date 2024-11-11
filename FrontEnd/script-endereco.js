@@ -127,7 +127,7 @@ async function deletarEndereco(id) {
     const confirmacao = confirm('Tem certeza que deseja deletar este endereço?');
     if (confirmacao) {
         try {
-            const response = await fetch(`http://localhost:8080/enderecos/apagar/${id}`, {
+            const response = await fetch(`http://localhost:8080/enderecos/deletar/${id}`, {
                 method: 'DELETE'
             });
 

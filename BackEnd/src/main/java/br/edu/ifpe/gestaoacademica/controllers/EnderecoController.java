@@ -38,9 +38,9 @@ public class EnderecoController {
 	
 	@PutMapping
 	@Transactional
-	public ResponseEntity<EnderecoDTO> atualizarEndereco(@RequestBody @Valid EnderecoDTO dadosAtualizacao) {
-	    Endereco enderecoAtualizado = enderecoService.atualizarEndereco(dadosAtualizacao);
-	    return ResponseEntity.ok(new EnderecoDTO(enderecoAtualizado));
+	public ResponseEntity<EnderecoDTO> atualizarEndereco(@RequestBody @Valid EnderecoDTO dadosEnderecoDTO) {
+	    var endereco = enderecoService.atualizarEndereco(dadosEnderecoDTO);
+	    return ResponseEntity.ok(new EnderecoDTO(endereco));
 	}
 	
 	@GetMapping
@@ -48,7 +48,7 @@ public class EnderecoController {
 		return enderecoService.listarEnderecos().stream().map(EnderecoDTO::new).toList();
 	}
 	
-	@DeleteMapping("/apagar/{id}")
+	@DeleteMapping("/deletar/{id}")
 	@Transactional
 	public ResponseEntity<Void> deletarEndereco(@PathVariable Long id){
 		enderecoService.deletarEndereco(id);
